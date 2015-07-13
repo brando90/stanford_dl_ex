@@ -23,7 +23,8 @@ poolDim = 3;          % dimension of pooling region
 
 % Here we load MNIST training images
 addpath ../common/;
-images = loadMNISTImages('../common/train-images-idx3-ubyte');
+location = '../data/common/train-images-idx3-ubyte';
+images = loadMNISTImages(location);
 images = reshape(images,imageDim,imageDim,numImages);
 
 W = randn(filterDim,filterDim,numFilters);
@@ -53,7 +54,7 @@ convolvedFeatures = cnnConvolve(filterDim, numFilters, convImages, W, b);
 for i = 1:1000   
     filterNum = randi([1, numFilters]);
     imageNum = randi([1, 8]);
-    imageRow = randi([1, imageDim - filterDim + 1]);
+    imageRow = randi([1, ;imageDim - filterDim + 1]);
     imageCol = randi([1, imageDim - filterDim + 1]);    
    
     patch = convImages(imageRow:imageRow + filterDim - 1, imageCol:imageCol + filterDim - 1, imageNum);
